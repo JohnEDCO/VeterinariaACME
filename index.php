@@ -9,19 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css"  href="Css/style.css">
-    <title>Inicio de sesion</title>
+    <title>Iniciar sesion</title>
 </head>
+<?php
+    session_start();
+    if(!empty($_SESSION['idRol'])){
+        header('location: ../Controllers/loginController.php');
+    }else{
+        session_destroy();
+?>
+
 <body>
     <img class="wave" src="Img/waveRojo.png" alt="">
 
     <div class="contenedor">
         <div class="img">
-            <img src="Img/Veterinaria.svg" alt="">
+            <img src="Img/team.svg" alt="">
         </div>
         <div class="contenido-login">
-            <form action="">
+            <form action="Controllers/loginController.php" method="post">
                 <img src="Img/logoAcme.png" alt="">
-                <h2>ACME</h2>
+                <h2>Veterinaria ACME</h2>
                 <div class="input-div email">
                     <div class="i">
                         <i class="fas fa-envelope"></i>
@@ -47,4 +55,8 @@
     </div>
 </body>
     <script src="Js/app.js"></script>
+
 </html>
+<?php
+}
+?>
