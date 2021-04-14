@@ -29,7 +29,11 @@
                 $_SESSION['idUsuario'] = $objeto->idusuario;
                 $_SESSION['idRol'] = $objeto->idrol;
                 $_SESSION['nombreUsuario'] = $objeto->nombre;
+                $_SESSION['apellidoUsuario'] = $objeto->apellido;
+                $_SESSION['emailUsuario'] = $objeto->email;
+                $_SESSION['telefono'] = $objeto->telefono;
                 $_SESSION['tipoRol'] = $objeto->tipo;
+
             }
             switch ($_SESSION['idRol']){
                 case 8:
@@ -47,4 +51,5 @@
             header('location: ../index.php');
         }
     }
+
 ?>

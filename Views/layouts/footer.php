@@ -40,6 +40,7 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
+
 <script src="../Js/jquery.min.js"></script>
 <script src="../Js/bootstrap.bundle.min.js"></script>
 

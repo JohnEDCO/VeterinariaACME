@@ -3,7 +3,7 @@
     if($_SESSION['idRol'] == 8){
         include_once 'layouts/header.php';
 ?>
-            <title>Adm | Home</title>
+            <title>Adm | Inicio</title>
 <?php
         include_once 'layouts/nav.php';
 ?>
@@ -113,11 +113,11 @@
 
                             <div class="col">
                                 <!-- Collapsable Card Example -->
-                                <div class="card shadow mb-4">
+                                <div class="card shadow mb-4 border-left-danger">
                                     <!-- Card Header - Accordion -->
-                                    <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+                                    <a href="#collapseCardExample" class="d-block card-header py-3 bg-gradient-secondary " data-toggle="collapse"
                                        role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                                        <h6 class="m-0 font-weight-bold text-primary">Collapsable Card Example</h6>
+                                        <h6 class="m-0 font-weight-bold text-gray-400 ">Collapsable Card Example</h6>
                                     </a>
                                     <!-- Card Content - Collapse -->
                                     <div class="collapse show" id="collapseCardExample">

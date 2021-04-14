@@ -14,7 +14,7 @@
 <?php
     session_start();
     if(!empty($_SESSION['idRol'])){
-        header('location: ../Controllers/loginController.php');
+        header('location: Controllers/loginController.php');
     }else{
         session_destroy();
 ?>
