@@ -8,6 +8,8 @@
 
 <!-- Custom styles for this template-->
 <link href="../Css/sb-admin-2.min.css" rel="stylesheet" type="text/css" >
+<!-- Sweetalert2 para confirmaciones -->
+<link href="../Css/sweetalert2.css" rel="stylesheet" type="text/css" >
 </head>
 
 <body id="page-top">
@@ -42,7 +44,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Control usuarios
+            Control usuario
         </div>
         <!-- Nav item - Editar perfil-->
         <li class="nav-item">
@@ -51,8 +53,15 @@
                 <span>Editar perfil</span></a>
         </li>
 
-        <!-- Nav Item - Utilities Collapse Menu -->
+        <!-- Nav item - Usuarios-->
         <li class="nav-item">
+            <a class="nav-link" href="../Views/adm_usuarios.php">
+                <i class="fas fa-fw fa-user-cog"></i>
+                <span>Usuarios</span></a>
+        </li>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <!--<li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-users"></i>
@@ -67,7 +76,7 @@
 
                 </div>
             </div>
-        </li>
+        </li>-->
 
         <!-- Nav item - Cuentas-->
         <li class="nav-item">
@@ -81,31 +90,8 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Addons
+            Control clientes
         </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-               aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
-            </a>
-            <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="login.html">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item active" href="blank.html">Blank Page</a>
-                </div>
-            </div>
-        </li>
-
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">

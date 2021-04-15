@@ -50,6 +50,9 @@
 <!-- Custom scripts for all pages-->
 <script src="../Js/sb-admin-2.min.js"></script>
 
+<!-- sweetalert2 mensajes de confirmacion, etc.-->
+<script src="../Js/sweetalert2.js"></script>
+
 </body>
 
 </html>

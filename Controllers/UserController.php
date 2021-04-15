@@ -63,4 +63,61 @@ if($_POST['funcion'] == 'cambiar-contraseña'){
     $usuario->cambiar_contraseña($idUsuario, $newPass, $oldPass);
 
 }
+
+if($_POST['funcion'] == 'obtener-roles'){
+    $json = array();
+    $usuario->obtener_roles();
+
+    foreach ($usuario->objetos as $objeto){
+
+        $json[]=array(
+            'idRol'=>$objeto->idrol,
+            'tipo'=>$objeto->tipo
+
+        );
+    }
+    $jsonString = json_encode($json);
+    echo $jsonString;
+
+}
+
+if($_POST['funcion'] == 'obtener-usuarios'){
+    $json = array();
+    $usuario->obtener_usuarios();
+
+    foreach ($usuario->objetos as $objeto){
+
+        $json[]=array(
+            'idUsuario'=>$objeto->idusuario,
+            'nombre'=>$objeto->nombre,
+            'tipoRol'=>$objeto->tipo,
+            'idRol' => $objeto->idrol
+        );
+    }
+    $jsonString = json_encode($json);
+    echo $jsonString;
+
+}
+
+if($_POST['funcion'] == 'crear-usuario'){
+
+    $json = array();
+
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $telefono = $_POST['telefono'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $idRol = $_POST['idRol'];
+
+    $usuario->registrar_usuario($nombre, $apellido, $telefono, $email, $password, $idRol);
+}
+
+if($_POST['funcion'] == 'borrar-usuario'){
+
+    $id = $_POST['id'];
+
+    $usuario->borrar_usuario($id);
+
+}
 ?>

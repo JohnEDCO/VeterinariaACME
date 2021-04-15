@@ -47,6 +47,45 @@
             }
 
         }
+        //------------Funciones de usuarios---------------------
+        function obtener_usuarios(){
+            if(!empty($_POST['dato'])) {
+
+                $dato = $_POST['dato'];
+                $sql = "Select * from usuario inner join rol on usuario.idRol = rol.idRol where nombre like :dato";
+                $query = $this->acceso->prepare($sql);
+                $query->execute(array(':dato' => "%$dato%"));
+                return $this->objetos = $query->fetchAll();
+            }else{
+
+                $sql = "Select * from usuario inner join rol on usuario.idRol = rol.idRol";
+                $query = $this->acceso->prepare($sql);
+                $query->execute(array());
+                return $this->objetos = $query->fetchAll();
+            }
+        }
+
+        function registrar_usuario($nombre, $apellido, $telefono, $email, $password, $idRol){
+
+            $sql = "INSERT INTO usuario (nombre, apellido, telefono, email, password, idRol) VALUES(:nombre, :apellido, :telefono, :email, :password, :idRol)";
+            $query = $this->acceso->prepare($sql);
+            $query->execute(array(':nombre'=>$nombre, ':apellido'=>$apellido, ':telefono'=>$telefono, ':email'=>$email, ':password'=>$password, ':idRol'=>$idRol));
+            echo 1;
+        }
+        function obtener_roles(){
+            $sql = "Select * from rol";
+            $query = $this->acceso->prepare($sql);
+            $query->execute();
+            return $this->objetos = $query->fetchAll();
+        }
+        function borrar_usuario($id){
+            $sql = "delete from usuario where idUsuario=:id";
+            $query = $this->acceso->prepare($sql);
+            $query->execute(array(':id'=>$id));
+
+            echo 1;
+        }
+        //------------Fin funciones de usuario---------------------
     }
 ?>
 
