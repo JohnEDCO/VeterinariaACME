@@ -58,7 +58,7 @@
                 return $this->objetos = $query->fetchAll();
             }else{
 
-                $sql = "Select * from usuario inner join rol on usuario.idRol = rol.idRol";
+                $sql = "Select * from usuario inner join rol on usuario.idRol = rol.idRol ";
                 $query = $this->acceso->prepare($sql);
                 $query->execute(array());
                 return $this->objetos = $query->fetchAll();
@@ -84,6 +84,12 @@
             $query->execute(array(':id'=>$id));
 
             echo 1;
+        }
+        function editar_usuario($id, $nombre, $apellido, $telefono, $email, $idRol){
+            $sql = "UPDATE usuario SET nombre=:nombre, apellido=:apellido, telefono=:telefono, email=:email, idRol=:idrol WHERE idUsuario=:id";
+            $query = $this->acceso->prepare($sql);
+            $query->execute(array(':id'=>$id, ':nombre'=>$nombre, ':apellido'=>$apellido,':telefono'=>$telefono, ':email'=>$email, ':idrol'=>$idRol));
+            $this->objetos = $query->fetchAll();
         }
         //------------Fin funciones de usuario---------------------
     }

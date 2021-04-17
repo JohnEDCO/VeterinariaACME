@@ -1,6 +1,5 @@
 <?php
 session_start();
-if($_SESSION['idRol'] == 8){
     include_once 'layouts/header.php';
     ?>
     <title>Adm | Editar usuario</title>
@@ -283,11 +282,5 @@ if($_SESSION['idRol'] == 8){
     <?php
     include_once 'layouts/footer.php';
     ?>
-
-    <?php
-}else{
-    header('location: ../../index.php');
-}
-?>
 
 <script src="../Js/usuario.js"></script>

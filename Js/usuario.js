@@ -64,8 +64,7 @@ $(document).ready(function (){
     });
 
     $('#form-usuario').submit(evt=>{
-        funcion = 'editar_usuario';
-        console.log("Aqui esta agarrando");
+        funcion = 'editar-usuario-adm';
 
         if(edit==true){
             let nombreU = $('#nombreI').val();
@@ -107,7 +106,7 @@ $(document).ready(function (){
                 $('#editadoContra').show(1000);
                 setTimeout(function(){$('#editadoContra').hide(1000)},2000);
                 $('#form-cambiarC').trigger('reset');
-                console.log($('#staticBackdrop').getAttribute());
+
 
 
             }else{

@@ -10,6 +10,7 @@
 <link href="../Css/sb-admin-2.min.css" rel="stylesheet" type="text/css" >
 <!-- Sweetalert2 para confirmaciones -->
 <link href="../Css/sweetalert2.css" rel="stylesheet" type="text/css" >
+
 </head>
 
 <body id="page-top">
@@ -52,14 +53,26 @@
                 <i class="fas fa-fw fa-user-cog"></i>
                 <span>Editar perfil</span></a>
         </li>
-
+        <?php
+        if($_SESSION['idRol'] == 8){
+        ?>
         <!-- Nav item - Usuarios-->
         <li class="nav-item">
             <a class="nav-link" href="../Views/adm_usuarios.php">
-                <i class="fas fa-fw fa-user-cog"></i>
+                <i class="fas fa-fw fa-users"></i>
                 <span>Usuarios</span></a>
         </li>
 
+        <!-- Nav item - Cuentas-->
+        <li class="nav-item">
+           <a class="nav-link" href="#">
+               <i class="fas fa-fw fa-puzzle-piece"></i>
+               <span>Roles</span></a>
+        </li>
+
+            <?php
+         }
+        ?>
         <!-- Nav Item - Utilities Collapse Menu -->
         <!--<li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -78,23 +91,84 @@
             </div>
         </li>-->
 
-        <!-- Nav item - Cuentas-->
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-puzzle-piece"></i>
-                <span>Roles</span></a>
-        </li>
 
-        <!-- Divider -->
+        <!-- Nav item - Crear clientes-->
+
+        <?php
+        if($_SESSION['idRol'] == 8 or $_SESSION['idRol'] == 9){
+        ?>
+            <!-- Divider -->
         <hr class="sidebar-divider">
 
-        <!-- Heading -->
+            <!-- Heading control clientes -->
         <div class="sidebar-heading">
-            Control clientes
+                Control clientes
         </div>
 
+       <?php
+            if($_SESSION['idRol'] == 8){
+       ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Views/adm_clientes.php">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span>Clientes</span></a>
+                </li>
+        <?php
+            }
+        ?>
+
+            <!-- Nav item - Crear mascotas-->
+            <li class="nav-item">
+                <a class="nav-link" href="../Views/adm_mascotas.php">
+                    <i class="fas fa-fw fa-dog"></i>
+                    <span>Mascotas</span></a>
+            </li>
+            <!-- Nav item - Crear consultas-->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-clipboard"></i>
+                    <span>Consultas</span></a>
+            </li>
+
+            <!-- Nav item - Crear procedimientos-->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-hands-wash"></i>
+                    <span>Procedimientos</span></a>
+            </li>
+
+        <?php
+            }
+        ?>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
+        <?php
+        if($_SESSION['idRol'] == 8 or $_SESSION['idRol'] == 10){
+            ?>
+
+            <!-- Heading control clientes -->
+            <div class="sidebar-heading">
+                Control ventas y productos
+            </div>
+
+            <!-- Nav item - Crear productos-->
+            <li class="nav-item">
+                <a class="nav-link" href="../Views/adm_mascotas.php">
+                    <i class="fas fa-fw fa-dolly-flatbed"></i>
+                    <span>Prodcutos</span></a>
+            </li>
+            <!-- Nav item - generar venta-->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-cash-register"></i>
+                    <span>Ventas</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+        <?php
+             }
+        ?>
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">

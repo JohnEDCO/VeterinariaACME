@@ -40,7 +40,7 @@
     echo $jsonString;
     }
 
-if ($_POST['funcion'] == 'editar_usuario'){
+if ($_POST['funcion'] == 'editar-usuario-adm'){
 
     $idUsuario = $_POST['idUsuario'];
     $nombre = $_POST['nombreU'];
@@ -63,7 +63,7 @@ if($_POST['funcion'] == 'cambiar-contraseña'){
     $usuario->cambiar_contraseña($idUsuario, $newPass, $oldPass);
 
 }
-
+//---------------------------------USUARIOS------------------------------------------
 if($_POST['funcion'] == 'obtener-roles'){
     $json = array();
     $usuario->obtener_roles();
@@ -90,6 +90,10 @@ if($_POST['funcion'] == 'obtener-usuarios'){
         $json[]=array(
             'idUsuario'=>$objeto->idusuario,
             'nombre'=>$objeto->nombre,
+            'apellido'=>$objeto->apellido,
+            'email'=>$objeto->email,
+            'telefono'=>$objeto->telefono,
+            'password'=>$objeto->password,
             'tipoRol'=>$objeto->tipo,
             'idRol' => $objeto->idrol
         );
@@ -120,4 +124,20 @@ if($_POST['funcion'] == 'borrar-usuario'){
     $usuario->borrar_usuario($id);
 
 }
+
+if ($_POST['funcion'] == 'editar-usuario'){
+
+    $idUsuario = $_POST['id'];
+    $nombre = $_POST['nombreU'];
+    $apellido = $_POST['apellidoU'];
+    $telefono = $_POST['telefonoU'];
+    $email = $_POST['emailU'];
+    $idrol = $_POST['idrol'];
+
+    $usuario->editar_usuario($idUsuario, $nombre, $apellido, $telefono, $email, $idrol);
+
+    echo 1; //significa que fue editado
+
+}
+//---------------------------------USUARIOS------------------------------------------
 ?>

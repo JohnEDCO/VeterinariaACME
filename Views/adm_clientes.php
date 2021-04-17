@@ -1,83 +1,87 @@
 <?php
 session_start();
-if($_SESSION['idRol'] == 8 ){
-    include_once 'layouts/header.php';
-    ?>
-    <title>Adm | Inicio</title>
-    <?php
-    include_once 'layouts/nav.php';
-    ?>
+if($_SESSION['idRol'] == 8){
+include_once 'layouts/header.php';
+?>
+<title>Adm | Inicio</title>
+<?php
+include_once 'layouts/nav.php';
+?>
+<!-- Modal crear cliente -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Crear cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
-    <!-- Modal crear usuario -->
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Agregar usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="alert alert-success" role="alert" id="clienteCreado" style="display: none">
+                    Cliente creado exitosamente!
                 </div>
-                <div class="modal-body">
 
-                    <div class="alert alert-success" role="alert" id="usuarioCreado" style="display: none">
-                        Usuario creado exitosamente!
+                <form id="form-crear-cliente" class="user">
+                    <div class="form-group row">
+
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label class="h7 text-dark">Nombre</label>
+                            <input type="text" class="form-control form-control-user" id="nombreI"
+                                   placeholder="Nombre" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="h7 text-dark">Apellido</label>
+                            <input type="text" class="form-control form-control-user" id="apellidoI"
+                                   placeholder="Apellido" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="h7 text-dark">Tipo Documento</label>
+                        <input type="text" class="form-control form-control-user" id="tipoDocI"
+                               placeholder="Tipo">
+                    </div>
+                    <div class="form-group">
+                        <label class="h7 text-dark">Documento</label>
+                        <input type="number" class="form-control form-control-user" id="documentoI"
+                               placeholder="Numero documento" required>
                     </div>
 
-                    <form id="form-crear-usuario" class="user">
-                        <div class="form-group row">
+                    <div class="form-group">
+                        <label class="h7 text-dark">Email</label>
+                        <input type="email" class="form-control form-control-user" id="emailI"
+                               placeholder="Example@hotmail.com" required>
+                    </div>
 
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label class="h7 text-dark">Nombre</label>
-                                <input type="text" class="form-control form-control-user" id="nombreI"
-                                       placeholder="Nombre" required>
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="h7 text-dark">Apellido</label>
-                                <input type="text" class="form-control form-control-user" id="apellidoI"
-                                       placeholder="Apellido" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="h7 text-dark">Email</label>
-                            <input type="email" class="form-control form-control-user" id="emailI"
-                                   placeholder="Example@hotmail.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="h7 text-dark">Telefono</label>
-                            <input type="number" class="form-control form-control-user" id="telefonoI"
-                                   placeholder="Telefono" required>
-                        </div>
+                    <div class="form-group">
+                        <label class="h7 text-dark">Direccion</label>
+                        <input type="text" class="form-control form-control-user" id="direccionI"
+                               placeholder="Direccion">
+                    </div>
 
-                        <div class="form-group">
-                            <label class="h7 text-dark">Contraseña</label>
-                            <input type="password" class="form-control form-control-user" id="passwordI"
-                                   placeholder="Contraseña" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="h7 text-dark">Rol</label>
-                                <select class="custom-select mr-sm-2 rol" id="inlineFormCustomSelect" required>
+                    <div class="form-group">
+                        <label class="h7 text-dark">Telefono</label>
+                        <input type="number" class="form-control form-control-user" id="telefonoI"
+                               placeholder="Telefono" required>
+                    </div>
 
-                                </select>
-
-                        </div>
-
-                </div>
-                <div class="modal-footer ">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Crear usuario</button>
-                    </form>
-                </div>
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-info">Crear cliente</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 <!-- Modal editar usuario -->
 <div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Editar usuario</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Editar cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -88,7 +92,7 @@ if($_SESSION['idRol'] == 8 ){
                     Usuario editado exitosamente!
                 </div>
 
-                <form id="form-editar-usuario" class="user">
+                <form id="form-editar-cliente" class="user">
                     <div class="form-group row">
 
                         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -103,35 +107,45 @@ if($_SESSION['idRol'] == 8 ){
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="h7 text-dark">Tipo Documento</label>
+                        <input type="text" class="form-control form-control-user" id="tipoDoc"
+                               placeholder="Tipo">
+                    </div>
+                    <div class="form-group">
+                        <label class="h7 text-dark">Documento</label>
+                        <input type="text" class="form-control form-control-user" id="documento"
+                               placeholder="Numero documento">
+                    </div>
+
+                    <div class="form-group">
                         <label class="h7 text-dark">Email</label>
                         <input type="email" class="form-control form-control-user" id="email"
                                placeholder="Example@hotmail.com" required>
                     </div>
+
+                    <div class="form-group">
+                        <label class="h7 text-dark">Direccion</label>
+                        <input type="text" class="form-control form-control-user" id="direccion"
+                               placeholder="Direccion">
+                    </div>
+
                     <div class="form-group">
                         <label class="h7 text-dark">Telefono</label>
                         <input type="number" class="form-control form-control-user" id="telefono"
                                placeholder="Telefono" required>
                     </div>
 
-                    <div class="form-group">
-                        <label class="h7 text-dark">Rol</label>
-                        <select class="custom-select mr-sm-2 rolEdit" id="inlineFormCustomSelect" required>
-
-                        </select>
-
-                    </div>
-
             </div>
             <div class="modal-footer ">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Crear usuario</button>
+                <button type="submit" class="btn btn-primary">Editar cliente</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
 
     <!-- Main Content -->
     <div id="content">
@@ -191,7 +205,7 @@ if($_SESSION['idRol'] == 8 ){
 
                 <div class="topbar-divider d-none d-sm-block"></div>
 
-                <!-- Nav Item - Informacion de usuario -->
+                <!-- Nav Item - Informacion de cliente -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -228,26 +242,26 @@ if($_SESSION['idRol'] == 8 ){
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-start mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Gestion de cuentas de usuario</h1>
+                <h1 class="h3 mb-0 text-gray-800">Gestion de clientes</h1>
                 <a id="agregar-nuevo"  href="#" class="btn btn-info btn-icon-split btn-sm ml-3" data-toggle="modal" data-target="#staticBackdrop">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-plus"></i>
                                         </span>
-                    <span class="text">Agregar nuevo</span>
+                    <span class="text">Crear nuevo</span>
                 </a>
             </div>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-gray-700">Usuarios</h6>
+                    <h6 class="m-0 font-weight-bold text-gray-700">Clientes</h6>
 
                 </div>
                 <div class="card-body">
                     <!-- Topbar buscador de usuarios -->
                     <div class="d-sm-flex align-items-center justify-content-start mb-4">
-                        <h4 class="h6 mb-0 text-gray-800">Buscar usuario</h4>
+                        <h4 class="h6 mb-0 text-gray-800">Buscar cliente</h4>
                         <form
-                                class="d-none d-sm-inline-block form-inline mr-auto  ml-md-3 my-0 mw-100 navbar-search">
+                            class="d-none d-sm-inline-block form-inline mr-auto  ml-md-3 my-0 mw-100 navbar-search">
                             <div class="input-group">
                                 <input id="buscador" type="text" class="form-control bg-light border-0 small" placeholder="Busqueda por..."
                                        aria-label="Search" aria-describedby="basic-addon2">
@@ -267,10 +281,13 @@ if($_SESSION['idRol'] == 8 ){
                         <tr>
                             <th scope="col">N°</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Rol</th>
-                            <th scope="col">Accion
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Tipo Doc</th>
+                            <th scope="col">Documento</th>
+                            <th scope="col">Accion</th>
 
-                            </th>
 
                         </tr>
                         </thead>
@@ -293,8 +310,8 @@ if($_SESSION['idRol'] == 8 ){
     ?>
 
     <?php
-}else{
-    header('location: ../index.php');
-}
-?>
-        <script src="../Js/gestion_usuarios.js"></script>
+    }else{
+        header('location: ../index.php');
+    }
+    ?>
+    <script src="../Js/gestion_clientes.js"></script>
