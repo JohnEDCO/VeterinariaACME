@@ -3,7 +3,7 @@ session_start();
 if($_SESSION['idRol'] == 9){
     include_once 'layouts/header.php';
     ?>
-    <title>Vet | Inicio</title>
+    <title>Adm | Inicio</title>
     <?php
     include_once 'layouts/nav.php';
     ?>
@@ -63,11 +63,7 @@ if($_SESSION['idRol'] == 9){
                 </li>
 
                 <!-- Nav Item - Alerts -->
-                <li class="nav-item">
-                    <a class="nav-link" href="../usuario/editar_usuario.php">
-                        <i class="fas fa-fw fa-user-cog"></i>
-                        <span>Editar perfil</span></a>
-                </li>
+
                 <!-- Nav Item - Messages -->
 
                 <div class="topbar-divider d-none d-sm-block"></div>
@@ -107,37 +103,65 @@ if($_SESSION['idRol'] == 9){
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-            <!-- Page Heading -->
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Contenido</h1>
-            </div>
+            <div class="container-fluid">
 
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Sobre nosotros</h1>
+                </div>
 
-            <div class="row">
+                <div class="row">
+                    <!-- Pie Mision -->
+                    <div class="col-xl-6 col-lg-5">
+                        <div class="card shadow mb-8">
+                            <!-- Card Header - Dropdown -->
 
-                <div class="col">
-                    <!-- Collapsable Card Example -->
-                    <div class="card shadow mb-4 border-left-danger">
-                        <!-- Card Header - Accordion -->
-                        <a href="#collapseCardExample" class="d-block card-header py-3 bg-gradient-secondary " data-toggle="collapse"
-                           role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                            <h6 class="m-0 font-weight-bold text-gray-400 ">Collapsable Card Example</h6>
-                        </a>
-                        <!-- Card Content - Collapse -->
-                        <div class="collapse show" id="collapseCardExample">
-                            <div class="card-body">
-                                This is a collapsable card example using Bootstrap's built in collapse
-                                functionality. <strong>Click on the card header</strong> to see the card body
-                                collapse and expand!
-                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body align-content-end">
+                                <hr class="sidebar-divider">
+                                <div class="text-center">
+                                    <h2>Nuestra mision</h2>
 
-                            <div class="card-header">
-                                Default Card Example
+                                    <hr class="sidebar-divider">
+
+                                    <p>
+                                        Ofrecer la mejor opción en medicina veterinaria para preservar la salud de nuestras mascotas junto con la tranquilidad de sus familias,
+                                        ofreciendo servicios especializados de calidad en el marco de la salud veterinaria, cuidado y bienestar de las mascotas; nuestro valor
+                                        agregado es trabajar día a día comprometidos para lograr total cobertura a las necesidades de nuestros pacientes, mediante un equipo profesional
+                                        capacitado, la infraestructura e instrumentación adecuada de alta tecnología que permitiré optimizar nuestra labor.
+                                    </p>
+
+                                </div>
                             </div>
                         </div>
-
                     </div>
 
+                    <!-- Area Actualizar datos -->
+                    <!-- Pie Perfil -->
+                    <div class="col-xl-6 col-lg-5">
+                        <div class="card shadow mb-8">
+                            <!-- Card Header - Dropdown -->
+
+                            <!-- Card Body -->
+                            <div class="card-body align-content-end">
+                                <hr class="sidebar-divider">
+                                <div class="text-center">
+                                    <h2>Nuestra Vision</h2>
+
+                                    <hr class="sidebar-divider">
+
+                                    <p>
+                                        Satisfacer los requerimientos y expectativas en el marco de la salud veterinaria,
+                                        logrando así, posicionarnos como una clínica destacada por un completo cubrimiento
+                                        de servicios para la salud, bienestar de nuestras mascotas, desde la ética humana
+                                        profesional comprometida y responsable de calidad con el fin de brindar la mejor
+                                        alternativa en atención especializada para peludos pacientes.
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
 

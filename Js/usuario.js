@@ -4,6 +4,7 @@ $(document).ready(function (){
     var edit= false;
 
     $('#form-usuario input').attr('disabled','disabled');
+    $('.btn-actualizar').attr('disabled','disabled');
 
     buscar_usuario(idUsuario);
 
@@ -13,6 +14,7 @@ $(document).ready(function (){
         $.post('../Controllers/UserController.php', {dato,funcion}, (response)=>{
 
             console.log(response);
+
             let nombre='';
             let apellido='';
             let telefono='';
@@ -27,8 +29,6 @@ $(document).ready(function (){
             apellido +=`${usuario.apellido}`;
             telefono +=`${usuario.telefono}`;
             email +=`${usuario.email}`;
-            password +=`${usuario.password}`;
-            idRol +=`${usuario.idRol}`;
             tipo +=`${usuario.tipo}`;
 
             $('#nombre').html(nombre);
@@ -37,6 +37,7 @@ $(document).ready(function (){
             $('#telefono').html(telefono);
             $('#tipo').html(tipo);
 
+            console.log(nombre);
 
         })
     }
@@ -63,8 +64,7 @@ $(document).ready(function (){
     });
 
     $('#form-usuario').submit(evt=>{
-        funcion = 'editar_usuario';
-        console.log("Aqui esta agarrando");
+        funcion = 'editar-usuario-adm';
 
         if(edit==true){
             let nombreU = $('#nombreI').val();
@@ -81,13 +81,13 @@ $(document).ready(function (){
                     $('#editado').show(1000);
                     setTimeout(function(){$('#editado').hide(1000)},2000);
                     $('#form-usuario').trigger('reset');
+
                     $('#form-usuario input').attr('disabled','disabled');
                     $('.btn-actualizar').attr('disabled','disabled');
 
                 }
                 edit = false;
                 buscar_usuario(idUsuario);
-                console.log(typeof response);
             })
         }
         evt.preventDefault();
@@ -102,16 +102,18 @@ $(document).ready(function (){
         $.post('../Controllers/UserController.php',{idUsuario,funcion, newPass, oldPass},(response)=>{
             if(response == 1){
 
-                $('#editado').hide('slow');
-                $('#editado').show(1000);
-                setTimeout(function(){$('#editado').hide(1000)},2000);
+                $('#editadoContra').hide('slow');
+                $('#editadoContra').show(1000);
+                setTimeout(function(){$('#editadoContra').hide(1000)},2000);
                 $('#form-cambiarC').trigger('reset');
 
+
+
             }else{
-                $('#noeditado').hide('slow');
-                $('#noeditado').show(1000);
-                setTimeout(function(){$('#noeditado').hide(1000)},2000);
-                $('#form-cambiarC').trigger('reset');
+                $('#noeditadoContra').hide('slow');
+                $('#noeditadoContra').show(1000);
+                setTimeout(function(){$('#noeditadoContra').hide(1000)},2000);
+                $('form-cambiarC').trigger('reset');
             }
         })
 

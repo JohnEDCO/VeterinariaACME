@@ -1,6 +1,5 @@
 <?php
 session_start();
-if($_SESSION['idRol'] == 8){
     include_once 'layouts/header.php';
     ?>
     <title>Adm | Editar usuario</title>
@@ -9,7 +8,7 @@ if($_SESSION['idRol'] == 8){
     ?>
 
     <!-- Modal Cambiar contraseña -->
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade modal-editar-us" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -26,14 +25,16 @@ if($_SESSION['idRol'] == 8){
                     </a>
                     <br>
 
-                    <h4 id="nombre" class="profile-username text-center text-black-40"><?php $_SESSION['nombreUsuario'] ?>></h4>
+                    <h4  class="profile-username text-center text-black-40"><?php echo $_SESSION['nombreUsuario'] ?></h4>
 
-                    <div class="alert alert-success" role="alert" id="editado" style="display: none">
+                    <div class="alert alert-success" role="alert" id="editadoContra" style="display: none">
                         Tu contraseña se actualizo correctamente!
                     </div>
-                    <div class="alert alert-danger" role="alert" id="noeditado" style="display: none">
+
+                    <div class="alert alert-danger" role="alert" id="noeditadoContra" style="display: none">
                         La contraseña es incorrecta!
                     </div>
+
                     <form id="form-cambiarC" class="user">
 
                         <div class="form-group">
@@ -227,6 +228,7 @@ if($_SESSION['idRol'] == 8){
                             <div class="alert alert-success" role="alert" id="editado" style="display: none">
                                 Se actualizo correctamente!
                             </div>
+
                             <form id="form-usuario" class="user">
                                 <div class="form-group row">
 
@@ -263,9 +265,6 @@ if($_SESSION['idRol'] == 8){
 
                                         </button>
                                     </div>
-
-
-
                             </form>
                         </div>
                     </div>
@@ -283,11 +282,5 @@ if($_SESSION['idRol'] == 8){
     <?php
     include_once 'layouts/footer.php';
     ?>
-
-    <?php
-}else{
-    header('location: ../../index.php');
-}
-?>
 
 <script src="../Js/usuario.js"></script>
