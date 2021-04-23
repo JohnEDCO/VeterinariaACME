@@ -27,18 +27,21 @@ class Mascota{
 
         if(!empty($_POST['dato'])) {
             $dato = $_POST['dato'];
-            $sql = "Select * from mascota inner join tipoMascota on mascota.idTipoMascota = tipoMascota.idTipoMascota where nombre like :dato";
+            $sql = "Select * from mascota inner join tipoMascota on mascota.idTipoMascota = tipoMascota.idTipoMascota left join cliente on cliente.idCliente = mascota.idCliente where nombre like :dato";
             $query = $this->acceso->prepare($sql);
             $query->execute(array(':dato' => "%$dato%"));
             return $this->objetos = $query->fetchAll();
+            print_r($this->objetos);
         }else{
-            $sql = "Select * from mascota inner join tipoMascota on mascota.idTipoMascota = tipoMascota.idTipoMascota";
+            $sql = "Select * from mascota inner join tipoMascota on mascota.idTipoMascota = tipoMascota.idTipoMascota left join cliente on cliente.idCliente = mascota.idCliente";
             $query = $this->acceso->prepare($sql);
             $query->execute(array());
             $this->objetos = $query->fetchAll();
             return $this->objetos;
+            print_r($this->objetos);
         }
     }
+
     function obtener_dueños(){
 
         if(!empty($_POST['dato'])) {
@@ -71,10 +74,9 @@ class Mascota{
     }
 
     function borrar_mascota($id){
-        $sql = "delete from cliente where idCliente=:id";
+        $sql = "delete from mascota where idMascota=:id";
         $query = $this->acceso->prepare($sql);
         $query->execute(array(':id'=>$id));
-
         echo 1;
     }
 }

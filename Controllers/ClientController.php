@@ -26,8 +26,8 @@ if($_POST['funcion'] == 'obtener-clientes'){
 
         $json[]=array(
             'idCliente'=>$objeto->idcliente,
-            'nombre'=>$objeto->nombre,
-            'apellido'=>$objeto->apellido,
+            'nombre'=>$objeto->nombrecliente,
+            'apellido'=>$objeto->apellidocliente,
             'email'=>$objeto->email,
             'telefono'=>$objeto->telefono,
             'direccion'=>$objeto->direccion,

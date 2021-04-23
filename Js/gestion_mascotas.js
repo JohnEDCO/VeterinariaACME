@@ -1,6 +1,8 @@
 $(document).ready(function (){
     var idM =0;
     var funcion='';
+    var funcion2='';
+    var modal =0; //variable para controlar  que modal esta abierto en cierto momento
     mostrar_datos_tabla();
 
     //al teclear en el buscador de mascotas
@@ -29,10 +31,14 @@ $(document).ready(function (){
                 template +=`<tr idMascota="${mascota.idMascota}" 
                                 nombreMascota="${mascota.nombre}" 
                                 tipoMascota="${mascota.tipo}"
+                                idTipoMascota = "${mascota.idTipo}"
                                 raza="${mascota.raza}"
                                 edad="${mascota.edad}"
                                 fechaNacimiento="${mascota.fechaNac}"
-                                idDueño="${mascota.idCliente}">
+                                idDueño="${mascota.idCliente}"
+                                nombreDueño = "${mascota.nombreCliente}"
+                                apellidoDueño = "${mascota.apellidoCliente}"
+                                >
                                 
                                 <th scope="row">${contador}</th>
                                 <td>${mascota.nombre}</td>
@@ -66,7 +72,8 @@ $(document).ready(function (){
                                 nombreCliente="${dueño.nombre}" 
                                 apellidoCliente="${dueño.apellido}"
                                 tipoDoc="${dueño.tipoDoc}"
-                                documento="${dueño.numeroDoc}">
+                                documento="${dueño.numeroDoc}"
+                                >
                                 
                                 <th scope="row">${contador}</th>
                                 <td>${dueño.nombre}</td>
@@ -87,7 +94,7 @@ $(document).ready(function (){
     $('#form-crear-mascota').submit(evt=>{
 
         funcion ='crear-mascota';
-
+        modal = 0;
         let nombreM = $('#nombreI').val();
         let razaM = $('#razaI').val();
         let idTipo = $('.tipoM').val();
@@ -116,36 +123,67 @@ $(document).ready(function (){
         evt.preventDefault();
     })
 
-    //Evento para cargar los datos del usuario seleccionado para editar en el modal
+    //Evento para cargar los datos de la mascota seleccionado para editar en el modal
     $(document).on('click','#editar-mascota', (evt)=>{
 
+        funcion='obtener-tipo-mascota';
+        funcion2 = 'obtener-datos-dueño';
+        modal = 2;
+        let templateDueño='';
+
         const elemento = $(this)[0].activeElement.parentElement.parentElement;
-        const idCliente = $(elemento).attr('idCliente');
-        const documento = $(elemento).attr('documento');
-        const nombre = $(elemento).attr('nombrecliente');
-        const apellido = $(elemento).attr('apellidocliente');
-        const email = $(elemento).attr('email');
-        const telefono = $(elemento).attr('telefono');
-        const direccion = $(elemento).attr('direccion');
-        const tipoDoc = $(elemento).attr('tipodoc');
+        const nombre = $(elemento).attr('nombreMascota');
+        const raza = $(elemento).attr('raza');
+        const idTipoMascota = $(elemento).attr('idTipoMascota');
+        const edad = $(elemento).attr('edad');
+        const fechaNacimiento = $(elemento).attr('fechaNacimiento');
+        const idDueño = $(elemento).attr('idDueño');
+        const nombreDueño = $(elemento).attr('nombreDueño');
+        const apellidoDueño = $(elemento).attr('apellidoDueño');
 
-        $('#nombre').val(nombre);
-        $('#apellido').val(apellido);
-        $('#email').val(email);
-        $('#telefono').val(telefono);
-        $('#tipoDoc').val(tipoDoc);
-        $('#documento').val(documento);
-        $('#direccion').val(direccion);
-        idC = idCliente;
+        console.log(nombreDueño);
+        $.post('../Controllers/PetController.php', {funcion,idDueño}, (response)=> {
+            const tiposME = JSON.parse(response);
+            let template ='';
 
+            tiposME.forEach(tipoM=>{
+                template +=`<option value="${tipoM.idTipoM}">${tipoM.tipo}</option>`;
+            });
 
+            templateDueño= `<div class="form-group row" id="info-dueño">
+
+                        <div class="col-sm-9 mb-3 mb-sm-0">
+                            <label class="h7 text-dark">Dueño</label>
+                            <input type="text" class="form-control form-control-user" id="nombreDueño" value="${nombreDueño} ${apellidoDueño}">
+                        </div>
+                        <div class="col mb-sm-0 mt-lg-auto">
+                            <a href="#" id="retirar-dueño" class="btn btn-danger btn-circle ">
+                                        <i class="fas fa-times-circle"></i>
+                             </a>
+                        </div>
+                    </div>  `;
+
+            if(idDueño != 'null'){
+                $('#body-editar-mascota').append(templateDueño);
+                $('#editar-dueño-asignado').attr('disabled', 'disabled');
+            }
+            $('#nombreDueño').attr('disabled','disabled');
+            $('.tipoME').html(template);
+            $(".tipoME option[value='"+idTipoMascota+"']").attr('selected',true);
+            $('#nombre').val(nombre);
+            $('#raza').val(raza);
+            $('#edad').val(edad);
+            $('#fechaNac').val(fechaNacimiento);
+            $('#idDueño').val(idDueño);
+
+        })
     })
 
     $('#form-editar-mascota').submit(evt=>{
 
-        funcion = 'editar-cliente';
+        funcion = 'editar-mascota';
+        modal =0;
 
-        let idCliente = idC;
         let nombreC = $('#nombre').val();
         let apellidoC = $('#apellido').val();
         let emailC = $('#email').val();
@@ -184,12 +222,13 @@ $(document).ready(function (){
     //---Evento de click para eliminar usuario sleccionado desde la tabla, usando sweetalert2
     $(document).on('click','#eliminar-mascota', (evt)=>{
 
-        funcion = 'borrar-cliente';
+        funcion = 'borrar-mascota';
         const elemento = $(this)[0].activeElement.parentElement.parentElement;
-        const idCliente = $(elemento).attr('idCliente');
-        const nombreC = $(elemento).attr('nombrecliente');
+        const idCliente = $(elemento).attr('idMascota');
+        const nombreM = $(elemento).attr('nombreMascota');
 
-        console.log(nombreC);
+
+        console.log(idCliente);
 
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -201,7 +240,7 @@ $(document).ready(function (){
 
         swalWithBootstrapButtons.fire({
             title: 'Esta seguro?',
-            text: "El cliente "+ nombreC + " sera eliminado!",
+            text: "La mascota "+ nombreM + " sera eliminada!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Si, borrar!',
@@ -209,13 +248,13 @@ $(document).ready(function (){
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                $.post('../Controllers/ClientController.php', {funcion,idCliente}, (response)=> {
+                $.post('../Controllers/PetController.php', {funcion,idCliente}, (response)=> {
                     mostrar_datos_tabla();
                     console.log(response);
                 })
                 swalWithBootstrapButtons.fire(
                     'Borrado!',
-                    "El usuario "+ nombreC.bold().toUpperCase()+ " ha sido elimiado!",
+                    "La mascota "+ nombreM.bold().toUpperCase()+ " ha sido elimiada!",
                     'success'
                 )
             } else if (
@@ -229,14 +268,33 @@ $(document).ready(function (){
                 )
             }
         })
+
+    })
+    //Evento al cerrar el modal de editar mascota, lo que hace es retirar el input con el nombre del dueño y el boton de retirar
+    $(document).on('hidden.bs.modal ', '#staticBackdrop2', evt =>{
+        $('#info-dueño').remove();
+        $('#editar-dueño-asignado').removeAttr('disabled', 'disabled');
+        $('#asignar-dueño').removeAttr('disabled', 'disabled');
+
     })
 
     $(document).on('click', '#asignar-dueño', (evt)=>{
         mostrar_datos_tabla_dueños();
     })
+    $(document).on('click', '#editar-dueño-asignado', (evt)=>{
+        mostrar_datos_tabla_dueños();
+    })
+
     $(document).on('click', '#retirar-dueño', (evt)=>{
-        $('#info-dueño').remove();
-        $('#asignar-dueño').removeAttr('disabled', 'disabled');
+
+        if(modal == 1){
+            $('#info-dueño').remove();
+            $('#asignar-dueño').removeAttr('disabled', 'disabled');
+        }
+        else if(modal == 2){
+            $('#info-dueño').remove();
+            $('#editar-dueño-asignado').removeAttr('disabled', 'disabled');
+        }
     })
 
     $(document).on('click', '#seleccion-dueño', (evt)=>{
@@ -261,16 +319,29 @@ $(document).ready(function (){
                         </div>
                     </div>  `;
 
-        $('#body-crear-mascota').append(template);
-        $('#nombreDueñoI').attr('disabled', 'disabled');
-        $('#asignar-dueño').attr('disabled', 'disabled');
-        $('#idDueñoI').val(idDueño);
-        $('#staticBackdrop3').modal('hide');
+        if (modal == 1){
+            console.log("modal 1");
+
+            $('#body-crear-mascota').append(template);
+            $('#nombreDueñoI').attr('disabled', 'disabled');
+            $('#asignar-dueño').attr('disabled', 'disabled');
+            $('#idDueñoI').val(idDueño);
+            $('#staticBackdrop3').modal('hide');
+        }
+        else if (modal == 2){
+            console.log("modal 2");
+            $('#body-editar-mascota').append(template);
+            $('#nombreDueñoI').attr('disabled', 'disabled');
+            $('#editar-dueño-asignado').attr('disabled', 'disabled');
+            $('#idDueño').val(idDueño);
+            $('#staticBackdrop3').modal('hide');
+
+        }
 
     })
     $(document).on('click', '#agregar-nuevo', (evt)=>{
         funcion='obtener-tipo-mascota';
-
+        modal = 1;
         $.post('../Controllers/PetController.php', {funcion}, (response)=> {
             const tiposM = JSON.parse(response);
             let template ='';

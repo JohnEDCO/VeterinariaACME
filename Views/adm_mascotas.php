@@ -94,52 +94,53 @@ include_once 'layouts/nav.php';
                 </div>
 
                 <form id="form-editar-mascota" class="user">
-                    <div class="form-group row">
 
-                        <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div id="body-editar-mascota">
+                        <div class="form-group">
                             <label class="h7 text-dark">Nombre</label>
                             <input type="text" class="form-control form-control-user" id="nombre"
                                    placeholder="Nombre" required>
+
                         </div>
-                        <div class="col-sm-6">
-                            <label class="h7 text-dark">Apellido</label>
-                            <input type="text" class="form-control form-control-user" id="apellido"
-                                   placeholder="Apellido" required>
+                        <div class="form-group ">
+                            <label class="h7 text-dark">Raza</label>
+                            <input type="text" class="form-control form-control-user" id="raza"
+                                   placeholder="Raza" required>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="h7 text-dark">Tipo Documento</label>
-                        <input type="text" class="form-control form-control-user" id="tipoDoc"
-                               placeholder="Tipo">
-                    </div>
-                    <div class="form-group">
-                        <label class="h7 text-dark">Documento</label>
-                        <input type="text" class="form-control form-control-user" id="documento"
-                               placeholder="Numero documento">
+                        <div class="form-group">
+                            <label class="h7 text-dark">Tipo mascota</label>
+                            <select class="form-control custom-select  tipoME" style="border-radius: 20px; height: 50px" id="inlineFormCustomSelect" required>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="h7 text-dark">Edad</label>
+                            <input type="number" class="form-control form-control-user" id="edad"
+                                   placeholder="Edad">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="h7 text-dark">Fecha nacimiento</label>
+                            <input type="date" class="form-control form-control-user" id="fechaNac"
+                                   placeholder="Fecha" >
+                        </div>
+                        <input type="hidden" class="form-control form-control-user" id="idDueño">
                     </div>
 
-                    <div class="form-group">
-                        <label class="h7 text-dark">Email</label>
-                        <input type="email" class="form-control form-control-user" id="email"
-                               placeholder="Example@hotmail.com" required>
-                    </div>
+                    <button id="editar-dueño-asignado" type="button" class="btn btn-success btn-sm btn-icon-split" data-toggle="modal" data-target="#staticBackdrop3">
 
-                    <div class="form-group">
-                        <label class="h7 text-dark">Direccion</label>
-                        <input type="text" class="form-control form-control-user" id="direccion"
-                               placeholder="Direccion">
-                    </div>
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-user-plus"></i>
+                                        </span>
+                        <span class="text">Asignar dueño</span>
 
-                    <div class="form-group">
-                        <label class="h7 text-dark">Telefono</label>
-                        <input type="number" class="form-control form-control-user" id="telefono"
-                               placeholder="Telefono" required>
-                    </div>
+                    </button>
 
             </div>
+
             <div class="modal-footer ">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Editar mascota</button>
+                <button type="submit" class="btn btn-info">Crear masctoa</button>
                 </form>
             </div>
         </div>
