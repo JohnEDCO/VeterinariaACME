@@ -1,7 +1,9 @@
 <?php
 include_once '../Models/Mascota.php';
+include_once '../Models/Cliente.php';
 
 $mascota = new Mascota();
+$cliente = new Cliente();
 
 if($_POST['funcion'] == 'crear-mascota'){
 
@@ -24,14 +26,18 @@ if($_POST['funcion'] == 'obtener-mascotas'){
 
         $json[]=array(
             'idCliente'=> $objeto->idcliente,
+            'nombreCliente' => $objeto->nombrecliente,
+            'apellidoCliente'=> $objeto->apellidocliente,
             'idMascota'=>$objeto->idmascota,
             'nombre'=>$objeto->nombre,
             'raza'=>$objeto->raza,
             'tipo'=>$objeto->tipo,
+            'idTipo' => $objeto->idtipomascota,
             'edad'=>$objeto->edad,
-            'fechaNac'=>$objeto->fechanacimiento,
+            'fechaNac'=>$objeto->fechanacimiento
 
         );
+
     }
     $jsonString = json_encode($json);
     echo $jsonString;
@@ -45,8 +51,8 @@ if($_POST['funcion'] == 'obtener-dueños'){
 
         $json[]=array(
             'idCliente'=>$objeto->idcliente,
-            'nombre'=>$objeto->nombre,
-            'apellido'=>$objeto->apellido,
+            'nombre'=>$objeto->nombrecliente,
+            'apellido'=>$objeto->apellidocliente,
             'email'=>$objeto->email,
             'telefono'=>$objeto->telefono,
             'direccion'=>$objeto->direccion,
@@ -58,7 +64,7 @@ if($_POST['funcion'] == 'obtener-dueños'){
     echo $jsonString;
 
 }
-if($_POST['funcion'] == 'obtener-tipo-mascota'){
+if($_POST['funcion'] == 'obtener-tipo-mascota') {
     $json = array();
     $mascota->obtener_tipos_mascota();
 
@@ -74,21 +80,23 @@ if($_POST['funcion'] == 'obtener-tipo-mascota'){
     echo $jsonString;
 
 }
-//Editar mascota seleccionado
+//Editar mascota seleccionada desde la tabla
 if ($_POST['funcion'] == 'editar-mascota'){
 
-    $id = $_POST['idCliente'];
-    $documento = $_POST['documentoC'];
-    $tipoDoc = $_POST['tipoDocC'];
-    $nombre = $_POST['nombreC'];
-    $apellido = $_POST['apellidoC'];
-    $telefono = $_POST['telefonoC'];
-    $email = $_POST['emailC'];
-    $direccion= $_POST['direccionC'];
+    $idMascota = $_POST['idM'];
+    $nombre = $_POST['nombreM'];
+    $raza = $_POST['razaM'];
+    $tipo = $_POST['tipoM'];
+    $edad = $_POST['edadM'];
+    $fechaNac = $_POST['fechaNacM'];
+    $idDueño= $_POST['idDueñoM'];
 
-    $mascota->editar_mascota($id,$documento, $tipoDoc, $nombre, $apellido, $telefono, $email,$direccion );
+   if($fechaNac == "") {
+      $fechaNac = "000-00-00";
+   }
 
-    echo 1; //significa que fue editado
+   $mascota->editar_mascota($idMascota,$nombre,$raza, $tipo, $edad, $fechaNac, $idDueño);
+
 
 }
 
@@ -100,4 +108,5 @@ if($_POST['funcion'] == 'borrar-mascota'){
     $mascota->borrar_mascota($id);
 
 }
+
 ?>

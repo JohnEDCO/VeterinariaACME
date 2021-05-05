@@ -153,7 +153,7 @@
 
             <!-- Nav item - Crear productos-->
             <li class="nav-item">
-                <a class="nav-link" href="../Views/adm_mascotas.php">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-dolly-flatbed"></i>
                     <span>Prodcutos</span></a>
             </li>
