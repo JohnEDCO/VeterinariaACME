@@ -83,18 +83,20 @@ if($_POST['funcion'] == 'obtener-tipo-mascota') {
 //Editar mascota seleccionada desde la tabla
 if ($_POST['funcion'] == 'editar-mascota'){
 
-    $id = $_POST['idCliente'];
-    $documento = $_POST['documentoC'];
-    $tipoDoc = $_POST['tipoDocC'];
-    $nombre = $_POST['nombreC'];
-    $apellido = $_POST['apellidoC'];
-    $telefono = $_POST['telefonoC'];
-    $email = $_POST['emailC'];
-    $direccion= $_POST['direccionC'];
+    $idMascota = $_POST['idM'];
+    $nombre = $_POST['nombreM'];
+    $raza = $_POST['razaM'];
+    $tipo = $_POST['tipoM'];
+    $edad = $_POST['edadM'];
+    $fechaNac = $_POST['fechaNacM'];
+    $idDueño= $_POST['idDueñoM'];
 
-    $mascota->editar_mascota($id,$documento, $tipoDoc, $nombre, $apellido, $telefono, $email,$direccion );
+   if($fechaNac == "") {
+      $fechaNac = "000-00-00";
+   }
 
-    echo 1; //significa que fue editado
+   $mascota->editar_mascota($idMascota,$nombre,$raza, $tipo, $edad, $fechaNac, $idDueño);
+
 
 }
 

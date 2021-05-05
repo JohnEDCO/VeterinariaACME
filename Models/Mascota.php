@@ -65,12 +65,24 @@ class Mascota{
         return $this->objetos = $query->fetchAll();
     }
 
-    function editar_mascota($id,$documento, $tipoDoc, $nombre, $apellido, $telefono, $email,$direccion ){
+    function editar_mascota($idM,$nombre,$raza, $tipo, $edad, $fechaNac, $idDueño){
 
-        $sql = "UPDATE cliente SET nombre=:nombre, apellido=:apellido, telefono=:telefono, email=:email, direccion=:direccion, tipoDocumento=:tipoDoc, numeroDocumento=:documento WHERE idCliente=:id";
-        $query = $this->acceso->prepare($sql);
-        $query->execute(array(':id'=>$id, ':nombre'=>$nombre, ':apellido'=>$apellido,':telefono'=>$telefono, ':email'=>$email, ':direccion'=>$direccion, ':tipoDoc'=>$tipoDoc,':documento'=>$documento));
-        $this->objetos = $query->fetchAll();
+        if($idDueño != 'null'){
+
+           $sql = "UPDATE mascota SET nombre=:nombre, raza=:raza, idTipoMascota=:idTipoM, edad=:edad, fechaNacimiento=:fechaNac, idCliente=:idDueno WHERE idMascota=:idM";
+            $query = $this->acceso->prepare($sql);
+            $query->execute(array(':nombre'=>$nombre, ':raza'=>$raza, ':idTipoM'=>$tipo, ':edad'=>$edad, ':fechaNac'=>$fechaNac, ':idDueno'=>$idDueño, ':idM'=>$idM));
+            $this->objetos = $query->fetchAll();
+            echo 1;
+        }else{
+
+            $sql = "UPDATE mascota SET nombre=:nombre, raza=:raza, idTipoMascota=:idTipoM, edad=:edad, fechaNacimiento=:fechaNac WHERE idMascota=:idM";
+            $query = $this->acceso->prepare($sql);
+            $query->execute(array(':idM'=>$idM, ':nombre'=>$nombre, ':raza'=>$raza,':idTipoM'=>$tipo, ':edad'=>$edad, ':fechaNac'=>$fechaNac));
+            $this->objetos = $query->fetchAll();
+            echo 1;
+        }
+
     }
 
     function borrar_mascota($id){

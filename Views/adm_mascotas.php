@@ -19,10 +19,6 @@ include_once 'layouts/nav.php';
             </div>
             <div class="modal-body">
 
-                <div class="alert alert-success" role="alert" id="mascotaCreada" style="display: none">
-                    Mascota creado exitosamente!
-                </div>
-
                 <form id="form-crear-mascota" class="user">
 
                     <div id="body-crear-mascota">
@@ -78,7 +74,7 @@ include_once 'layouts/nav.php';
 </div>
 
 <!-- Modal editar mascota -->
-<div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" style="overflow: scroll" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -88,10 +84,6 @@ include_once 'layouts/nav.php';
                 </button>
             </div>
             <div class="modal-body">
-
-                <div class="alert alert-success" role="alert" id="usuarioEditado" style="display: none">
-                    Mascota editada exitosamente!
-                </div>
 
                 <form id="form-editar-mascota" class="user">
 
@@ -140,7 +132,7 @@ include_once 'layouts/nav.php';
 
             <div class="modal-footer ">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-info">Crear masctoa</button>
+                <button type="submit" class="btn btn-info">Editar mascota</button>
                 </form>
             </div>
         </div>

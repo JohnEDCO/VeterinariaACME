@@ -1,7 +1,6 @@
 $(document).ready(function (){
-    var idM =0;
+    var idM=0;
     var funcion='';
-    var funcion2='';
     var modal =0; //variable para controlar  que modal esta abierto en cierto momento
     mostrar_datos_tabla();
 
@@ -140,8 +139,8 @@ $(document).ready(function (){
         const idDueño = $(elemento).attr('idDueño');
         const nombreDueño = $(elemento).attr('nombreDueño');
         const apellidoDueño = $(elemento).attr('apellidoDueño');
+        idM = $(elemento).attr('idMascota');
 
-        console.log(nombreDueño);
         $.post('../Controllers/PetController.php', {funcion,idDueño}, (response)=> {
             const tiposME = JSON.parse(response);
             let template ='';
@@ -184,35 +183,28 @@ $(document).ready(function (){
         funcion = 'editar-mascota';
         modal =0;
 
-        let nombreC = $('#nombre').val();
-        let apellidoC = $('#apellido').val();
-        let emailC = $('#email').val();
-        let telefonoC = $('#telefono').val();
-        let tipoDocC = $('#tipoDoc').val();
-        let documentoC = $('#documento').val();
-        let direccionC = $('#direccion').val();
-
-
-        $.post('../Controllers/ClientController.php', {funcion,idCliente,nombreC,apellidoC,emailC,telefonoC,direccionC,tipoDocC, documentoC}, (response)=> {
+        let nombreM = $('#nombre').val();
+        let razaM = $('#raza').val();
+        let tipoM = $('.tipoME').val();
+        let edadM = $('#edad').val();
+        let fechaNacM = $('#fechaNac').val();
+        let idDueñoM = $('#idDueño').val();
+        //console.log(fechaNacM);
+        $.post('../Controllers/PetController.php', {funcion,idM,nombreM,razaM,tipoM,edadM,fechaNacM,idDueñoM}, (response)=> {
 
             console.log(response);
             if(response == 1){
 
-                $('#clienteCreado').hide('slow');
-                $('#clienteCreado').show(1000);
-                setTimeout(function(){$('#clienteCreado').hide(1000)},2000);
-                $('#form-editar-cliente').trigger('reset');
                 $('#staticBackdrop2').modal('hide');
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'El cliente ha sido actualizado!',
+                    title: 'La mascota ha sido actualizada!',
                     showConfirmButton: false,
                     timer: 1500
                 })
 
             }
-            edit = false;
             mostrar_datos_tabla();
         })
 
@@ -270,12 +262,20 @@ $(document).ready(function (){
         })
 
     })
+
     //Evento al cerrar el modal de editar mascota, lo que hace es retirar el input con el nombre del dueño y el boton de retirar
     $(document).on('hidden.bs.modal ', '#staticBackdrop2', evt =>{
         $('#info-dueño').remove();
         $('#editar-dueño-asignado').removeAttr('disabled', 'disabled');
         $('#asignar-dueño').removeAttr('disabled', 'disabled');
 
+    })
+//Evento al cerrar el modal de crear mascota, lo que hace es limpiar el formulario y retirar el div con la informacion del dueño
+    $(document).on('hidden.bs.modal ', '#staticBackdrop', evt =>{
+        $('#info-dueño').remove();
+        $('#editar-dueño-asignado').removeAttr('disabled', 'disabled');
+        $('#asignar-dueño').removeAttr('disabled', 'disabled');
+        $('#form-crear-mascota').trigger('reset');
     })
 
     $(document).on('click', '#asignar-dueño', (evt)=>{
